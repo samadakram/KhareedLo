@@ -4,7 +4,7 @@ import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 
-const Login = () => {
+const SignUp = () => {
 
     const navigation = useNavigation();
 
@@ -14,10 +14,18 @@ const Login = () => {
                 style={styles.logo}
                 source={require('../../images/playstore.png')}
             />
-            <Text style={styles.loginText}>Login</Text>
+            <Text style={styles.loginText}>Create New Account</Text>
+            <CustomTextInput
+                placeholder="Enter Name"
+                icon={require('../../images/user.png')}
+            />
             <CustomTextInput
                 placeholder="Enter Email Id"
                 icon={require('../../images/email.png')}
+            />
+            <CustomTextInput
+                placeholder="Enter Mobile"
+                icon={require('../../images/phone.png')}
             />
             <CustomTextInput
                 placeholder="Enter Password"
@@ -32,8 +40,8 @@ const Login = () => {
             />
             <Text
                 style={styles.createAccount}
-                onPress={() => { navigation.navigate('SignUp') }}
-            >Create New Account</Text>
+                onPress={() => { navigation.goBack() }}
+            >Already have account?</Text>
         </View>
     )
 }
@@ -48,7 +56,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         alignSelf: 'center',
-        marginTop: 120,
+        marginTop: 50,
         borderRadius: 50,
         //borderColor: 'orange',
         borderWidth: 1
@@ -90,4 +98,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Login
+export default SignUp
