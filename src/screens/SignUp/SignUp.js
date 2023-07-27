@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, Image, TextInput, KeyboardAvoidingView } from 'react-native'
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
@@ -8,41 +8,111 @@ const SignUp = () => {
 
     const navigation = useNavigation();
 
+    const [name, setName] = useState('');
+    const [badName, setBadName] = useState(false);
+    const [email, setEmail] = useState('');
+    const [badEmail, setBadEmail] = useState(false);
+    const [mobile, setMobile] = useState();
+    const [badMobile, setBadMobile] = useState(false);
+    const [password, setPassword] = useState('');
+    const [badPassword, setBadPassword] = useState(false);
+
+    const validate = () => {
+        if (name === '') {
+            setName(true)
+        } else {
+            setName(false)
+        }
+
+        if (email === '') {
+            setBadEmail(true);
+        } else {
+            setBadEmail(false);
+        }
+
+        if (mobile === '') {
+            setBadEmail(true);
+        } else if (mobile > 11) {
+            setBadMobile(true)
+        } else {
+            setBadEmail(false);
+        }
+
+        if (password === '') {
+            setBadPassword(true);
+        } else {
+            setBadPassword(false)
+        }
+    };
+
     return (
-        <View style={styles.main}>
+        <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
+            {/* <View style={styles.main}> */}
             <Image
                 style={styles.logo}
                 source={require('../../images/playstore.png')}
             />
             <Text style={styles.loginText}>Create New Account</Text>
             <CustomTextInput
+                value={name}
+                onChnageText={text => setName(text)}
                 placeholder="Enter Name"
                 icon={require('../../images/user.png')}
             />
+            {
+                badName === true && (
+                    <Text style={styles.badText}>Please Enter Email Id</Text>
+                )
+            }
             <CustomTextInput
+                value={email}
+                onChnageText={text => setEmail(text)}
                 placeholder="Enter Email Id"
                 icon={require('../../images/email.png')}
             />
+            {
+                badEmail === true && (
+                    <Text style={styles.badText}>Please Enter Email Id</Text>
+                )
+            }
             <CustomTextInput
+                value={mobile}
+                onChnageText={text => setMobile(text)}
                 placeholder="Enter Mobile"
                 icon={require('../../images/phone.png')}
+                keyboardType="numeric"
             />
+            {
+                badMobile === true && (
+                    <Text style={styles.badText}>Please Enter Email Id</Text>
+                )
+            }
             <CustomTextInput
+                value={password}
+                onChnageText={text => setPassword(text)}
                 placeholder="Enter Password"
                 icon={require('../../images/lock.png')}
                 type='password'
             />
+            {
+                badPassword === true && (
+                    <Text style={styles.badText}>Please Enter Email Id</Text>
+                )
+            }
             <CustomButton
                 title={'Login'}
                 bgColor={'#000'}
                 textColor={'#fff'}
-                onPress={() => { }}
+                onPress={() => {
+                    validate();
+                }}
             />
             <Text
                 style={styles.createAccount}
                 onPress={() => { navigation.goBack() }}
             >Already have account?</Text>
-        </View>
+            {/* </View> */}
+        </KeyboardAvoidingView>
     )
 }
 
@@ -95,6 +165,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 20,
         textDecorationLine: 'underline'
+    },
+    badText: {
+        marginTop: 10,
+        paddingLeft: 30,
+        color: 'red'
     }
 });
 

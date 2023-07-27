@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native'
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
@@ -7,6 +7,24 @@ import { useNavigation } from '@react-navigation/native';
 const Login = () => {
 
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [badEmail, setBadEmail] = useState(false);
+    const [badPassword, setBadPassword] = useState(false);
+
+    const validate = () => {
+        if (email === '') {
+            setBadEmail(true);
+        } else {
+            setBadEmail(false);
+        }
+
+        if (password === '') {
+            setBadPassword(true);
+        } else {
+            setBadPassword(false)
+        }
+    };
 
     return (
         <View style={styles.main}>
@@ -18,17 +36,33 @@ const Login = () => {
             <CustomTextInput
                 placeholder="Enter Email Id"
                 icon={require('../../images/email.png')}
+                value={email}
+                onChnageText={text => setEmail(text)}
             />
+            {
+                badEmail === true && (
+                    <Text style={styles.badText}>Please Enter Email Id</Text>
+                )
+            }
             <CustomTextInput
                 placeholder="Enter Password"
                 icon={require('../../images/lock.png')}
+                value={password}
+                onChnageText={text => setPassword(text)}
                 type='password'
             />
+            {
+                badPassword === true && (
+                    <Text style={styles.badText}>Please Enter Password</Text>
+                )
+            }
             <CustomButton
                 title={'Login'}
                 bgColor={'#000'}
                 textColor={'#fff'}
-                onPress={() => { }}
+                onPress={() => {
+                    validate()
+                }}
             />
             <Text
                 style={styles.createAccount}
@@ -68,7 +102,7 @@ const styles = StyleSheet.create({
         width: '85%',
         height: 50,
         marginTop: 50,
-        color: 'orange'
+        color: 'black'
     },
     password: {
         borderWidth: 0.5,
@@ -87,6 +121,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 20,
         textDecorationLine: 'underline'
+    },
+    badText: {
+        marginTop: 10,
+        paddingLeft: 30,
+        color: 'red'
     }
 });
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native'
 
-const CustomTextInput = ({ value, onChnageText, placeholder, icon, type }) => {
+const CustomTextInput = ({ value, onChnageText, placeholder, icon, type, keyboardType }) => {
     return (
         <View style={styles.main}>
             <Image
@@ -9,10 +9,13 @@ const CustomTextInput = ({ value, onChnageText, placeholder, icon, type }) => {
                 style={styles.icon}
             />
             <TextInput
+                value={value}
+                onChangeText={(text) => onChnageText(text)}
                 placeholder={placeholder}
                 placeholderTextColor='#8e8e8e'
-                style={{ marginLeft: 10, color: 'orange' }}
+                style={{ marginLeft: 10, color: 'black' }}
                 secureTextEntry={type ? true : false}
+                keyboardType={keyboardType ? keyboardType : 'default'}
             />
         </View>
     )
