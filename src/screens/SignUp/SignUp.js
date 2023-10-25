@@ -12,14 +12,14 @@ const SignUp = () => {
     const [badName, setBadName] = useState(false);
     const [email, setEmail] = useState('');
     const [badEmail, setBadEmail] = useState(false);
-    const [mobile, setMobile] = useState();
+    const [mobile, setMobile] = useState('');
     const [badMobile, setBadMobile] = useState(false);
     const [password, setPassword] = useState('');
     const [badPassword, setBadPassword] = useState(false);
 
     const validate = () => {
         if (name === '') {
-            setName(true)
+            setBadName(true)
         } else {
             setName(false)
         }
@@ -31,11 +31,11 @@ const SignUp = () => {
         }
 
         if (mobile === '') {
-            setBadEmail(true);
+            setBadMobile(true);
         } else if (mobile > 11) {
             setBadMobile(true)
         } else {
-            setBadEmail(false);
+            setBadMobile(false);
         }
 
         if (password === '') {
@@ -46,73 +46,73 @@ const SignUp = () => {
     };
 
     return (
-        <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
-            {/* <View style={styles.main}> */}
-            <Image
-                style={styles.logo}
-                source={require('../../images/playstore.png')}
-            />
-            <Text style={styles.loginText}>Create New Account</Text>
-            <CustomTextInput
-                value={name}
-                onChnageText={text => setName(text)}
-                placeholder="Enter Name"
-                icon={require('../../images/user.png')}
-            />
-            {
-                badName === true && (
-                    <Text style={styles.badText}>Please Enter Email Id</Text>
-                )
-            }
-            <CustomTextInput
-                value={email}
-                onChnageText={text => setEmail(text)}
-                placeholder="Enter Email Id"
-                icon={require('../../images/email.png')}
-            />
-            {
-                badEmail === true && (
-                    <Text style={styles.badText}>Please Enter Email Id</Text>
-                )
-            }
-            <CustomTextInput
-                value={mobile}
-                onChnageText={text => setMobile(text)}
-                placeholder="Enter Mobile"
-                icon={require('../../images/phone.png')}
-                keyboardType="numeric"
-            />
-            {
-                badMobile === true && (
-                    <Text style={styles.badText}>Please Enter Email Id</Text>
-                )
-            }
-            <CustomTextInput
-                value={password}
-                onChnageText={text => setPassword(text)}
-                placeholder="Enter Password"
-                icon={require('../../images/lock.png')}
-                type='password'
-            />
-            {
-                badPassword === true && (
-                    <Text style={styles.badText}>Please Enter Email Id</Text>
-                )
-            }
-            <CustomButton
-                title={'Login'}
-                bgColor={'#000'}
-                textColor={'#fff'}
-                onPress={() => {
-                    validate();
-                }}
-            />
-            <Text
-                style={styles.createAccount}
-                onPress={() => { navigation.goBack() }}
-            >Already have account?</Text>
-            {/* </View> */}
-        </KeyboardAvoidingView>
+        <View style={styles.main}>
+            <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
+                <Image
+                    style={styles.logo}
+                    source={require('../../images/playstore.png')}
+                />
+                <Text style={styles.loginText}>Create New Account</Text>
+                <CustomTextInput
+                    value={name}
+                    onChnageText={text => setName(text)}
+                    placeholder="Enter Name"
+                    icon={require('../../images/user.png')}
+                />
+                {
+                    badName === true && (
+                        <Text style={styles.badText}>Please Enter Name</Text>
+                    )
+                }
+                <CustomTextInput
+                    value={email}
+                    onChnageText={text => setEmail(text)}
+                    placeholder="Enter Email Id"
+                    icon={require('../../images/email.png')}
+                />
+                {
+                    badEmail === true && (
+                        <Text style={styles.badText}>Please Enter Email Id</Text>
+                    )
+                }
+                <CustomTextInput
+                    value={mobile}
+                    onChnageText={text => setMobile(text)}
+                    placeholder="Enter Mobile"
+                    icon={require('../../images/phone.png')}
+                    keyboardType="numeric"
+                />
+                {
+                    badMobile === true && (
+                        <Text style={styles.badText}>Please Enter Mobile</Text>
+                    )
+                }
+                <CustomTextInput
+                    value={password}
+                    onChnageText={text => setPassword(text)}
+                    placeholder="Enter Password"
+                    icon={require('../../images/lock.png')}
+                    type='password'
+                />
+                {
+                    badPassword === true && (
+                        <Text style={styles.badText}>Please Enter Password</Text>
+                    )
+                }
+                <CustomButton
+                    title={'Sign Up'}
+                    bgColor={'#000'}
+                    textColor={'#fff'}
+                    onPress={() => {
+                        validate();
+                    }}
+                />
+                <Text
+                    style={styles.createAccount}
+                    onPress={() => { navigation.goBack() }}
+                >Already have account?</Text>
+            </KeyboardAvoidingView>
+        </View>
     )
 }
 
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '600',
         alignSelf: 'center',
-        marginTop: 50
+        marginTop: 30
     },
     input: {
         borderWidth: 0.5,
