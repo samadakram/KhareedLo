@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput, KeyboardAvoidingView } from '
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import ScreenWrapper from '../../components/ScreenWrapper/ScreenWrapper';
 
 const SignUp = () => {
 
@@ -46,7 +47,7 @@ const SignUp = () => {
     };
 
     return (
-        <View style={styles.main}>
+        <ScreenWrapper>
             <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
                 <Image
                     style={styles.logo}
@@ -112,7 +113,7 @@ const SignUp = () => {
                     onPress={() => { navigation.goBack() }}
                 >Already have account?</Text>
             </KeyboardAvoidingView>
-        </View>
+        </ScreenWrapper>
     )
 }
 
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '600',
         alignSelf: 'center',
-        marginTop: 30
+        marginTop: 20
     },
     input: {
         borderWidth: 0.5,
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '85%',
         height: 50,
-        marginTop: 50,
+        //marginTop: 50,
         color: 'orange'
     },
     password: {
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline'
     },
     badText: {
-        marginTop: 10,
+        marginTop: 5,
         paddingLeft: 30,
         color: 'red'
     }
