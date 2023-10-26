@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput } from 'react-native'
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import ScreenWrapper from '../../components/ScreenWrapper/ScreenWrapper';
 
 const Login = () => {
 
@@ -27,7 +28,7 @@ const Login = () => {
     };
 
     return (
-        <View style={styles.main}>
+        <ScreenWrapper>
             <Image
                 style={styles.logo}
                 source={require('../../images/playstore.png')}
@@ -68,7 +69,7 @@ const Login = () => {
                 style={styles.createAccount}
                 onPress={() => { navigation.navigate('SignUp') }}
             >Create New Account</Text>
-        </View>
+        </ScreenWrapper>
     )
 }
 
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '600',
         alignSelf: 'center',
-        marginTop: 50
+        marginTop: 20
     },
     input: {
         borderWidth: 0.5,
