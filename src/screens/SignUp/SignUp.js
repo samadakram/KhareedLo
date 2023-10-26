@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, Image, TextInput, KeyboardAvoidingView } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
@@ -48,71 +48,76 @@ const SignUp = () => {
 
     return (
         <ScreenWrapper>
-            <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
-                <Image
-                    style={styles.logo}
-                    source={require('../../images/playstore.png')}
-                />
-                <Text style={styles.loginText}>Create New Account</Text>
-                <CustomTextInput
-                    value={name}
-                    onChnageText={text => setName(text)}
-                    placeholder="Enter Name"
-                    icon={require('../../images/user.png')}
-                />
-                {
-                    badName === true && (
-                        <Text style={styles.badText}>Please Enter Name</Text>
-                    )
-                }
-                <CustomTextInput
-                    value={email}
-                    onChnageText={text => setEmail(text)}
-                    placeholder="Enter Email Id"
-                    icon={require('../../images/email.png')}
-                />
-                {
-                    badEmail === true && (
-                        <Text style={styles.badText}>Please Enter Email Id</Text>
-                    )
-                }
-                <CustomTextInput
-                    value={mobile}
-                    onChnageText={text => setMobile(text)}
-                    placeholder="Enter Mobile"
-                    icon={require('../../images/phone.png')}
-                    keyboardType="numeric"
-                />
-                {
-                    badMobile === true && (
-                        <Text style={styles.badText}>Please Enter Mobile</Text>
-                    )
-                }
-                <CustomTextInput
-                    value={password}
-                    onChnageText={text => setPassword(text)}
-                    placeholder="Enter Password"
-                    icon={require('../../images/lock.png')}
-                    type='password'
-                />
-                {
-                    badPassword === true && (
-                        <Text style={styles.badText}>Please Enter Password</Text>
-                    )
-                }
-                <CustomButton
-                    title={'Sign Up'}
-                    bgColor={'#000'}
-                    textColor={'#fff'}
-                    onPress={() => {
-                        validate();
-                    }}
-                />
-                <Text
-                    style={styles.createAccount}
-                    onPress={() => { navigation.goBack() }}
-                >Already have account?</Text>
-            </KeyboardAvoidingView>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+            >
+                <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
+                    <Image
+                        style={styles.logo}
+                        source={require('../../images/playstore.png')}
+                    />
+                    <Text style={styles.loginText}>Create New Account</Text>
+                    <CustomTextInput
+                        value={name}
+                        onChnageText={text => setName(text)}
+                        placeholder="Enter Name"
+                        icon={require('../../images/user.png')}
+                    />
+                    {
+                        badName === true && (
+                            <Text style={styles.badText}>Please Enter Name</Text>
+                        )
+                    }
+                    <CustomTextInput
+                        value={email}
+                        onChnageText={text => setEmail(text)}
+                        placeholder="Enter Email Id"
+                        icon={require('../../images/email.png')}
+                    />
+                    {
+                        badEmail === true && (
+                            <Text style={styles.badText}>Please Enter Email Id</Text>
+                        )
+                    }
+                    <CustomTextInput
+                        value={mobile}
+                        onChnageText={text => setMobile(text)}
+                        placeholder="Enter Mobile"
+                        icon={require('../../images/phone.png')}
+                        keyboardType="numeric"
+                    />
+                    {
+                        badMobile === true && (
+                            <Text style={styles.badText}>Please Enter Mobile</Text>
+                        )
+                    }
+                    <CustomTextInput
+                        value={password}
+                        onChnageText={text => setPassword(text)}
+                        placeholder="Enter Password"
+                        icon={require('../../images/lock.png')}
+                        type='password'
+                    />
+                    {
+                        badPassword === true && (
+                            <Text style={styles.badText}>Please Enter Password</Text>
+                        )
+                    }
+                    <CustomButton
+                        title={'Sign Up'}
+                        bgColor={'#000'}
+                        textColor={'#fff'}
+                        onPress={() => {
+                            validate();
+                        }}
+                    />
+                    <Text
+                        style={styles.createAccount}
+                        onPress={() => { navigation.goBack() }}
+                    >Already have account?</Text>
+                </KeyboardAvoidingView>
+            </ScrollView>
         </ScreenWrapper>
     )
 }
